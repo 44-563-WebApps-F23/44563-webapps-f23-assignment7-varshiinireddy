@@ -67,5 +67,29 @@
             var container = document.querySelector(".flex-container");
             container.insertBefore(newDiv, container.firstChild);
         });
+        function swap(){
+
+let mergerItems = document.getElementsByClassName("merger");
+
+let container = document.getElementById("target");
+
+let element1 = Math.floor(Math.random()*mergerItems.length);
+
+let element2 = Math.floor(Math.random()*mergerItems.length);
+
+let firstInnerText = document.getElementsByClassName("merger")[element1];
+
+let secondInnerText = document.getElementsByClassName("merger")[element2];
+
+if (mergerItems.length > 1) {
+
+    let temp = firstInnerText.innerHTML;
+
+    firstInnerText.innerHTML = secondInnerText.innerHTML;
+
+    secondInnerText.innerHTML = temp;
+
+} 
+        }
 </script>
 </html>	
