@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>setTimeout use</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <title>Timer</title>
+</head>
+<body>
+
+  <h2>Varshini Reddy Chittepu speed check </h2>
+    <div id="target">Your Time</div>
+    <div id="counter">Count</div>
+
+
+  <input id ="start-button" type="button" value="Start Timer">
+  <input id="react-button" type ="button" value="React">
+  
+  <script> 
+  var reactTime = undefined;
+
+ 
+function recordTime() 
+{
+    reactTime = Date.now();
+    console.log("React time recorded:", reactTime);
+}
+
+document.getElementById("react-button").onclick = recordTime;
+
+function startTime() {
+    for (var i = 0; i < 9; i++) {
+        setTimeout(function (count) {
+            return function () {
+                document.getElementById("counter").innerHTML = count;
+            };
+        }(i), (8 - i) * 1000);
+    }
+
+    setTimeout(function () {
+        if (typeof reactTime === "undefined") {
+            // User was too slow
+            document.getElementById("target").innerHTML = "Too Slow";
+        } else {
+            var endTime = Date.now();
+            var elapsedTime = endTime - reactTime;
+            document.getElementById("target").innerHTML = "Time was " + elapsedTime + "ms";
+        }
+    }, 8000);
+}
+
+document.getElementById("start-button").onclick = startTime;
+  </script>
+
+</body>
+</html>
