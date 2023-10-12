@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html> <head> 
+    <title>Merger</title>
+    <style>
+    .flex-container {
+      display: flex;  flex-direction:row;
+      background-color: red;
+  }
+
+.flex-container > div {  /*div children of the flex container*/
+  background-color: #f1f1f1; 
+  margin: 10px;  padding: 20px;  font-size: 30px;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) { 
+	 .flex-container{
+		 flex-direction:column;
+		 background-color: green;
+	  }
+	}
+</style></head>
+
+
+
+<body>
+    <h2>Sahithi Yamasani build a merger</h2>
+    <input type="text" id="textInput" placeholder="Enter text...">
+		<div class="flex-container" id="target">
+		  <div class="merger">row item 1</div>   
+		  <div class="merger">row item 2</div>  
+		  <div class="merger">row item 3</div>  
+		</div>
+	
+	<p> Press the button to create an new element of type div and then add it to the container.
+		</p>
+		<input type ="button" id ="addEndButton"  value ="Add end">
+        <input type ="button" id ="addFrontButton"  value ="Add Front">
+        <input type ="button" id ="removeButton"  value ="Remove">
+	
+	
+</body>
+<script>
+        document.getElementById("addEndButton").addEventListener("click", function () {
+        var inputValue = document.getElementById("textInput").value;
+        var newDiv = document.createElement("div");
+        newDiv.innerHTML = inputValue;
+        newDiv.className = "merger";
+        document.querySelector(".flex-container").appendChild(newDiv);
+    });
+
+    document.getElementById("removeButton").addEventListener("click", function () {
+           
+            var mergerItems = document.getElementsByClassName("merger");
+            var length = mergerItems.length;
+            if (length > 0) {
+                var middleIndex = Math.floor(length / 2);
+                mergerItems[middleIndex].remove();
+            }
+        });
+
+        document.getElementById("addFrontButton").addEventListener("click", function () {
+            var inputValue = document.getElementById("textInput").value;
+            var newDiv = document.createElement("div");
+            newDiv.innerHTML = inputValue;
+            newDiv.className = "merger";
+            var container = document.querySelector(".flex-container");
+            container.insertBefore(newDiv, container.firstChild);
+        });
+</script>
+</html>	
